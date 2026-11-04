@@ -1,0 +1,6 @@
+@extends('layouts.admin')
+@section('title', $box === 'participacion' ? 'Solicitudes de participación' : 'Contacto y privacidad')
+@section('content')
+<form class="filter-form" method="get"><label for="q">Referencia</label><input name="q" id="q" value="{{ request('q') }}"><label for="status">Estado</label><select name="status" id="status"><option value="">Todos</option>@foreach($states as $key => $label)<option value="{{ $key }}" @selected(request('status') === $key)>{{ $label }}</option>@endforeach</select><button class="button" type="submit">Filtrar</button></form><p class="form-help">Los datos de contacto están cifrados. La búsqueda se realiza por referencia, no por contenido personal.</p>
+<div class="table-scroll"><table><caption>Solicitudes recibidas</caption><thead><tr><th>Referencia</th><th>Finalidad</th><th>Estado</th><th>Recibida</th><th>Acción</th></tr></thead><tbody>@forelse($records as $record)<tr><th scope="row">{{ $record->reference }}</th><td>{{ $record->kind }}</td><td>{{ $states[$record->status] ?? $record->status }}</td><td>{{ $record->created_at->format('d/m/Y H:i') }}</td><td><a href="{{ route('admin.inbox.show', [$box, $record->id]) }}">Revisar</a></td></tr>@empty<tr><td colspan="5">No hay solicitudes para estos filtros.</td></tr>@endforelse</tbody></table></div>{{ $records->links('components.pagination') }}
+@endsection

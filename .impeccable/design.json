@@ -1,0 +1,378 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-04T17:23:41.370581+00:00",
+  "title": "Design System: Casa CAITH",
+  "extensions": {
+    "colorMeta": {
+      "wine": {
+        "role": "primary",
+        "displayName": "Vino de memoria",
+        "tonalRamp": [
+          "oklch(15% 0.1144 8.29)",
+          "oklch(26% 0.1144 8.29)",
+          "oklch(38% 0.1144 8.29)",
+          "oklch(49% 0.1144 8.29)",
+          "oklch(61% 0.1144 8.29)",
+          "oklch(72% 0.1144 8.29)",
+          "oklch(84% 0.1144 8.29)",
+          "oklch(95% 0.1144 8.29)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Papel cálido",
+        "tonalRamp": [
+          "oklch(15% 0.0210 79.09)",
+          "oklch(26% 0.0210 79.09)",
+          "oklch(38% 0.0210 79.09)",
+          "oklch(49% 0.0210 79.09)",
+          "oklch(61% 0.0210 79.09)",
+          "oklch(72% 0.0210 79.09)",
+          "oklch(84% 0.0210 79.09)",
+          "oklch(95% 0.0210 79.09)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta cálida",
+        "tonalRamp": [
+          "oklch(15% 0.0124 1.06)",
+          "oklch(26% 0.0124 1.06)",
+          "oklch(38% 0.0124 1.06)",
+          "oklch(49% 0.0124 1.06)",
+          "oklch(61% 0.0124 1.06)",
+          "oklch(72% 0.0124 1.06)",
+          "oklch(84% 0.0124 1.06)",
+          "oklch(95% 0.0124 1.06)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Tierra tenue",
+        "tonalRamp": [
+          "oklch(15% 0.0254 36.02)",
+          "oklch(26% 0.0254 36.02)",
+          "oklch(38% 0.0254 36.02)",
+          "oklch(49% 0.0254 36.02)",
+          "oklch(61% 0.0254 36.02)",
+          "oklch(72% 0.0254 36.02)",
+          "oklch(84% 0.0254 36.02)",
+          "oklch(95% 0.0254 36.02)"
+        ]
+      },
+      "wine-deep": {
+        "displayName": "Vino profundo",
+        "role": "primary"
+      },
+      "soft": {
+        "displayName": "Papel de gestión",
+        "role": "neutral"
+      },
+      "field-private": {
+        "displayName": "Campo privado",
+        "role": "neutral"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Titular del hero en Barlow 800 y mayúsculas."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos de sección."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Lectura y controles."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Introducciones editoriales."
+      },
+      "navigation": {
+        "displayName": "navigation",
+        "purpose": "Navegación principal."
+      },
+      "history-control": {
+        "displayName": "history-control",
+        "purpose": "Selector de etapa histórica."
+      },
+      "context": {
+        "displayName": "context",
+        "purpose": "Notas editoriales y metadatos."
+      },
+      "fine-print": {
+        "displayName": "fine-print",
+        "purpose": "Notas pequeñas de historia."
+      },
+      "wordmark": {
+        "displayName": "wordmark",
+        "purpose": "Marca del encabezado."
+      },
+      "hero-description": {
+        "displayName": "hero-description",
+        "purpose": "Introducción del hero."
+      },
+      "history-year": {
+        "displayName": "history-year",
+        "purpose": "Año monumental del relato."
+      },
+      "scene-annotation": {
+        "displayName": "Scene annotation",
+        "purpose": "Palabras visuales cursivas que acompañan la escena; no acciones."
+      },
+      "page-title": {
+        "displayName": "page-title",
+        "purpose": "Títulos de páginas públicas."
+      },
+      "article": {
+        "displayName": "article",
+        "purpose": "Lectura institucional y artículos."
+      },
+      "entry-title": {
+        "displayName": "entry-title",
+        "purpose": "Acceso editorial sin caja."
+      },
+      "admin-title": {
+        "displayName": "admin-title",
+        "purpose": "Título operativo del panel."
+      },
+      "admin-section": {
+        "displayName": "admin-section",
+        "purpose": "Sección de gestión."
+      },
+      "field": {
+        "displayName": "field",
+        "purpose": "Entrada de formulario."
+      },
+      "button": {
+        "displayName": "button",
+        "purpose": "Acción de formulario."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Llegada del hero, relato e iconos."
+      },
+      {
+        "name": "interaction",
+        "value": "180ms",
+        "purpose": "Color, fondo y pulsación."
+      },
+      {
+        "name": "icon",
+        "value": "250ms",
+        "purpose": "Flecha CTA y signo de FAQ."
+      },
+      {
+        "name": "history-story",
+        "value": "400ms",
+        "purpose": "Entrada del relato seleccionado."
+      },
+      {
+        "name": "hero-copy",
+        "value": "900ms",
+        "purpose": "Llegada del texto; desfases de 70ms y 140ms."
+      },
+      {
+        "name": "hero-art",
+        "value": "1.6s",
+        "purpose": "Llegada de la acuarela."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "admin-compact",
+        "value": "1100px"
+      },
+      {
+        "name": "hero-tablet",
+        "value": "1050px"
+      },
+      {
+        "name": "navigation-and-admin-collapse",
+        "value": "960px"
+      },
+      {
+        "name": "mobile",
+        "value": "760px"
+      },
+      {
+        "name": "small-mobile",
+        "value": "380px"
+      },
+      {
+        "name": "wide-desktop",
+        "value": "1700px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Text link CTA",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Enlace editorial subrayado con flecha diagonal.",
+      "html": "<a class=\"ds-text-link\" href=\"/Web-Caith/public/nosotros/historia\">Conoce nuestra historia <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></a>",
+      "css": ".ds-text-link{font-family:var(--body, 'Barlow', sans-serif);display:inline-flex;align-items:center;gap:24px;min-height:48px;color:var(--wine,#701f35);font-size:18px;font-weight:600;text-decoration:underline;text-underline-offset:.25em;text-decoration-thickness:1px}.ds-text-link svg{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;transition:transform 250ms cubic-bezier(.16,1,.3,1)}.ds-text-link:hover svg{transform:translate(3px,-3px)}.ds-text-link:focus-visible{outline:2px solid currentColor;outline-offset:6px}.ds-text-link:active{transform:translateY(1px)}@media(prefers-reduced-motion:reduce){.ds-text-link svg{transition:none}}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Navegación pública multipágina; menú hasta 960px.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Navegación principal\"><a href=\"/Web-Caith/public/nosotros\">Nosotros</a><a href=\"/Web-Caith/public/nuestra-labor\">Nuestra labor</a><a href=\"/Web-Caith/public/realidad-social\">Realidad social</a><a href=\"/Web-Caith/public/explorar\">Explora</a><a class=\"ds-nav-action\" href=\"/Web-Caith/public/como-ayudar\">Participa</a></nav>",
+      "css": ".ds-nav{font-family:var(--body, 'Barlow', sans-serif);display:flex;flex-wrap:wrap;align-items:center;gap:24px;color:var(--ink,#30282a)}.ds-nav a{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:17px;font-weight:500;color:inherit;text-decoration:none;text-underline-offset:.25em}.ds-nav .ds-nav-action,.ds-nav a:hover{color:var(--wine,#701f35)}.ds-nav a:hover,.ds-nav a[aria-current]{text-decoration:underline}.ds-nav a:focus-visible{outline:2px solid currentColor;outline-offset:6px}.ds-nav a:active{transform:translateY(1px)}.ds-nav svg{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}"
+    },
+    {
+      "name": "History year controls",
+      "kind": "custom",
+      "refersTo": "history-control",
+      "description": "Selector de etapas en la página de cronología; no en la portada.",
+      "html": "<div class=\"ds-years\" role=\"group\" aria-label=\"Elige una etapa de la historia\"><button type=\"button\" aria-pressed=\"true\">1994</button><button type=\"button\" aria-pressed=\"false\">2001</button><button type=\"button\" aria-pressed=\"false\">2020</button></div>",
+      "css": ".ds-years{display:flex;gap:48px;background:var(--wine,#701f35);color:var(--paper,#f4ebdd)}.ds-years button{font-family:var(--body, 'Barlow', sans-serif);padding:5px 0;min-height:48px;border:0;background:transparent;font-size:24px;color:inherit;opacity:.7;cursor:pointer;font-variant-numeric:tabular-nums}.ds-years button[aria-pressed=\"true\"]{opacity:1;text-decoration:underline;text-underline-offset:10px;text-decoration-thickness:2px}.ds-years button:hover{opacity:1}.ds-years button:focus-visible{outline:2px solid currentColor;outline-offset:6px}.ds-years button:active{transform:translateY(1px)}@media(max-width:760px){.ds-years{gap:36px}}"
+    },
+    {
+      "name": "Mobile menu toggle",
+      "kind": "button",
+      "refersTo": "menu-toggle",
+      "description": "Menú público hasta 960px; estado expandido conectado por JavaScript.",
+      "html": "<button class=\"ds-menu\" type=\"button\" aria-expanded=\"false\"><span>Menú</span><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" aria-hidden=\"true\"><path d=\"M4 8h16M4 16h16\"/></svg></button>",
+      "css": ".ds-menu{font-family:var(--body, 'Barlow', sans-serif);display:inline-flex;align-items:center;gap:10px;min-height:44px;border:0;padding:10px 0 10px 16px;background:transparent;font-size:18px;color:var(--ink,#30282a);cursor:pointer;transition:color 180ms,transform 180ms}.ds-menu svg{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}.ds-menu:hover{color:var(--ink,#30282a)}.ds-menu:focus-visible{outline:2px solid currentColor;outline-offset:6px}.ds-menu:active{transform:translateY(1px)}@media(prefers-reduced-motion:reduce){.ds-menu{transition:none}}"
+    },
+    {
+      "name": "Footer",
+      "kind": "custom",
+      "refersTo": "footer",
+      "description": "Pie público con enlaces institucionales y aclaración de ilustraciones conceptuales.",
+      "html": "<footer class=\"ds-footer\"><a class=\"ds-footer-name\" href=\"/Web-Caith/public\">Casa CAITH</a><nav class=\"ds-footer-links\" aria-label=\"Enlaces institucionales\"><a href=\"/Web-Caith/public/contacto\">Contacto</a><a href=\"/Web-Caith/public/privacidad\">Privacidad y retiro de datos</a><a href=\"/Web-Caith/public/donaciones\">Donaciones: próximamente</a><a href=\"/Web-Caith/public/admin/login\">Administración</a></nav><div class=\"ds-footer-bottom\"><p>Un programa del Centro Yanapanakusun.</p><a href=\"#inicio\">Volver arriba</a><p>Cusco, Perú</p></div><p class=\"ds-disclosure\">Propuesta para revisión institucional. Las ilustraciones y sus personajes son conceptuales; no representan a beneficiarias reales ni documentan las instalaciones.</p></footer>",
+      "css": ".ds-footer{font-family:var(--body, 'Barlow', sans-serif);background:var(--wine,#701f35);color:var(--paper,#f4ebdd);padding:54px 24px 32px}.ds-footer a{color:inherit;text-underline-offset:.25em}.ds-footer-name{display:block;font-size:clamp(62px,14.2vw,220px);font-weight:800;line-height:.98;letter-spacing:-.04em;white-space:nowrap;text-decoration:none}.ds-footer-name:hover{opacity:.85}.ds-footer a:focus-visible{outline:2px solid currentColor;outline-offset:6px}.ds-footer a:active{transform:translateY(1px)}.ds-footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:24px;margin-top:42px;font-size:16px}.ds-footer-bottom p{margin:0}.ds-footer-bottom a{display:inline-flex;align-items:center;gap:8px;padding-block:8px}.ds-footer-bottom svg{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round}@media(max-width:760px){.ds-footer{padding-block:40px 28px}.ds-footer-name{font-size:14vw}.ds-footer-bottom{gap:12px 24px;margin-top:28px}}.ds-footer-links{display:flex;gap:18px 32px;flex-wrap:wrap;margin-top:36px}.ds-footer-links a{min-height:44px;display:inline-flex;align-items:center}.ds-disclosure{font-size:14px;line-height:1.5;margin-top:24px;max-width:80ch}"
+    },
+    {
+      "name": "Poster headline",
+      "kind": "custom",
+      "refersTo": "hero-headline",
+      "description": "Titular de cartel del hero; Barlow 800, sin marco.",
+      "html": "<h1 class=\"ds-hero-title\">Un lugar<br>para crecer.</h1>",
+      "css": ".ds-hero-title{margin:0;font-family:var(--body,Barlow,sans-serif);font-weight:800;font-size:clamp(80px,7.7vw,120px);line-height:.89;letter-spacing:-.035em;text-transform:uppercase;color:var(--wine,#701f35)}@media(max-width:1050px){.ds-hero-title{font-size:clamp(60px,7.5vw,80px)}}@media(max-width:760px){.ds-hero-title{font-size:clamp(47px,9.8vw,72px);line-height:.91}}@media(max-width:380px){.ds-hero-title{font-size:42px}}"
+    },
+    {
+      "name": "Outlined poster lettering",
+      "kind": "custom",
+      "refersTo": "poster-lettering",
+      "description": "Anotación decorativa sin caja, girada −8°; en móvil comparte fila con la fecha antes de la escena.",
+      "html": "<p class=\"ds-poster-note\" aria-hidden=\"true\">Crecer<br>juntas.</p>",
+      "css": ".ds-poster-note{display:inline-block;margin:24px;font:800 48px/.88 var(--body,Barlow,sans-serif);letter-spacing:-.035em;text-transform:uppercase;transform:rotate(-8deg);color:var(--paper,#f4ebdd);-webkit-text-stroke:2.2px var(--wine,#701f35);paint-order:stroke fill}@media(max-width:1050px){.ds-poster-note{font-size:38px}}@media(max-width:760px){.ds-poster-note{font-size:28px;-webkit-text-stroke-width:1.4px}}@media(max-width:380px){.ds-poster-note{font-size:26px}}"
+    },
+    {
+      "name": "Community illustration and annotations",
+      "kind": "custom",
+      "refersTo": "community-illustration",
+      "description": "Escena conceptual de convivencia en tinta y semitonos, con palabras decorativas sin acción.",
+      "html": "<figure class=\"ds-community-scene\"><img src=\"http://localhost/Web-Caith/public/images/caith-convivencia.png\" alt=\"Ilustración conceptual de jóvenes y una educadora compartiendo libros y cuadernos alrededor de una mesa\" width=\"1536\" height=\"1024\"><figcaption class=\"ds-scene-words\" aria-hidden=\"true\"><span>Aprender.</span><span>Compartir.</span><span>Decidir.</span></figcaption></figure>",
+      "css": ".ds-community-scene{width:52%;margin:0}.ds-community-scene img{display:block;width:100%;max-width:100%;height:auto;margin:0}.ds-scene-words{display:flex;justify-content:space-around;gap:16px;margin-top:8px;padding-inline:10%;color:var(--wine,#701f35);font:italic 500 27px/1.1 var(--display,\"Cormorant Garamond\",Georgia,serif)}.ds-scene-words span:first-child{transform:rotate(-7deg)}.ds-scene-words span:nth-child(2){transform:rotate(4deg)}.ds-scene-words span:last-child{transform:rotate(-3deg)}@media(max-width:1050px){.ds-community-scene{width:57%}.ds-scene-words{font-size:24px;padding-inline:4%;gap:8px}}@media(max-width:760px){.ds-community-scene{width:100%;padding-bottom:26px}.ds-scene-words{font-size:23px;margin-top:14px;padding-inline:var(--gutter,24px)}}"
+    },
+    {
+      "name": "Editorial entry",
+      "kind": "custom",
+      "refersTo": "editorial-entry",
+      "description": "Acceso público abierto con título, resumen y flecha.",
+      "html": "<a class=\"ds-entry\" href=\"/Web-Caith/public/nosotros\"><h3>Nosotros <svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\"><path d=\"M5 19 19 5M5 5h14v14\"/></svg></h3><p>La casa, sus orígenes y su relación con el Centro Yanapanakusun.</p></a>",
+      "css": ".ds-entry{font-family:var(--body,Barlow,sans-serif);display:block;text-decoration:none;max-width:55ch;padding-block:8px;color:var(--ink,#30282a)}.ds-entry h3{display:flex;align-items:baseline;gap:16px;justify-content:space-between;font-size:28px;font-weight:600;line-height:1.15;letter-spacing:-.02em;margin:0 0 14px;color:var(--wine,#701f35)}.ds-entry p{font-size:18px;margin:0}.ds-entry svg{fill:none;stroke:currentColor;stroke-width:1.5;flex-shrink:0;transition:transform 200ms}.ds-entry:hover h3{text-decoration:underline;text-underline-offset:6px}.ds-entry:hover svg{transform:translate(3px,-3px)}.ds-entry:focus-visible{outline:2px solid currentColor;outline-offset:6px}@media(max-width:760px){.ds-entry h3{font-size:25px}}@media(prefers-reduced-motion:reduce){.ds-entry svg{transition:none}}"
+    },
+    {
+      "name": "Form field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Campo etiquetado compartido por formularios públicos y privados.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-name\">Nombres y apellidos <span aria-hidden=\"true\">*</span></label><input id=\"ds-name\" name=\"name\" required autocomplete=\"name\"></div>",
+      "css": ".ds-field{font-family:var(--body,Barlow,sans-serif);display:flex;flex-direction:column;gap:8px;margin-bottom:22px;color:var(--ink,#30282a)}.ds-field label{font-weight:500}.ds-field input{font:400 18px/1.4 var(--body,Barlow,sans-serif);color:var(--ink,#30282a);background:var(--paper,#f4ebdd);border:1px solid var(--muted,#65534e);border-radius:0;min-height:48px;padding:12px 14px;max-width:100%;caret-color:var(--wine,#701f35)}.ds-field input:focus-visible{outline:2px solid var(--wine,#701f35);outline-offset:3px}.ds-field input[aria-invalid=true]{border:2px solid var(--wine,#701f35)}"
+    },
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal de formulario o navegación de tarea.",
+      "html": "<button type=\"button\" class=\"ds-button\">Guardar contenido</button>",
+      "css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--wine,#701f35);color:var(--paper,#f4ebdd);border:0;padding:13px 22px;min-height:48px;font:600 18px/1.3 var(--body,Barlow,sans-serif);cursor:pointer}.ds-button:hover{background:var(--wine-deep,#531426)}.ds-button:focus-visible{outline:2px solid currentColor;outline-offset:6px}.ds-button:active{transform:translateY(1px)}.ds-button:disabled{opacity:.6;cursor:wait}"
+    },
+    {
+      "name": "Secondary button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Acción de apoyo en filtros y gestión.",
+      "html": "<button type=\"button\" class=\"ds-secondary\">Filtrar</button>",
+      "css": ".ds-secondary{display:inline-flex;align-items:center;justify-content:center;background:var(--soft,#eadfd2);color:var(--wine,#701f35);border:0;padding:13px 22px;min-height:48px;font:600 18px/1.3 var(--body,Barlow,sans-serif);cursor:pointer}.ds-secondary:hover{background:var(--soft,#eadfd2);color:var(--wine,#701f35)}.ds-secondary:focus-visible{outline:2px solid currentColor;outline-offset:6px}.ds-secondary:active{transform:translateY(1px)}.ds-secondary:disabled{opacity:.6;cursor:wait}"
+    },
+    {
+      "name": "Admin sidebar",
+      "kind": "nav",
+      "refersTo": "admin-sidebar",
+      "description": "Orientación privada con sección activa y acceso público.",
+      "html": "<aside class=\"ds-sidebar\"><a class=\"ds-admin-brand\" href=\"#\">Casa CAITH</a><p>Administración editorial</p><nav aria-label=\"Panel administrativo\"><a href=\"#\">Resumen</a><a href=\"#\" aria-current=\"page\">Páginas institucionales</a><a href=\"#\">Contacto y privacidad</a><a href=\"/Web-Caith/public\">Ver sitio público</a></nav></aside>",
+      "css": ".ds-sidebar{font-family:var(--body,Barlow,sans-serif);background:var(--wine,#701f35);color:var(--paper,#f4ebdd);padding:32px 24px;width:212px}.ds-sidebar a{color:inherit;text-decoration:none}.ds-admin-brand{display:block;font-size:28px;font-weight:800;line-height:1;letter-spacing:-.03em}.ds-sidebar p{font-size:15px;margin-top:12px}.ds-sidebar nav{display:grid;gap:3px;margin-top:24px}.ds-sidebar nav a{font-size:16px;line-height:1.35;padding:10px 8px;min-height:42px}.ds-sidebar nav a[aria-current]{background:var(--wine-deep,#531426)}.ds-sidebar a:hover{text-decoration:underline}.ds-sidebar a:focus-visible{outline:2px solid currentColor;outline-offset:6px}@media(max-width:960px){.ds-sidebar{width:auto}.ds-sidebar nav{display:flex;flex-wrap:wrap;gap:4px 12px}}"
+    },
+    {
+      "name": "Dashboard count tile",
+      "kind": "card",
+      "refersTo": "dashboard-item",
+      "description": "Conteo real de registros web; el ejemplo representa un módulo vacío.",
+      "html": "<a class=\"ds-dashboard\" href=\"#\"><h2>Páginas institucionales</h2><strong>0</strong><p>0 en borrador o revisión</p></a>",
+      "css": ".ds-dashboard{font-family:var(--body,Barlow,sans-serif);display:block;background:var(--soft,#eadfd2);padding:26px;color:var(--ink,#30282a);text-decoration:none}.ds-dashboard h2{font-size:22px;font-weight:600;line-height:1.2;margin:0 0 18px;color:var(--wine,#701f35)}.ds-dashboard strong{font-size:44px;font-weight:700;line-height:1;color:var(--wine,#701f35)}.ds-dashboard p{font-size:16px;margin:12px 0 0}.ds-dashboard:hover h2{text-decoration:underline}.ds-dashboard:focus-visible{outline:2px solid currentColor;outline-offset:6px}"
+    },
+    {
+      "name": "Management table",
+      "kind": "custom",
+      "refersTo": "data-table",
+      "description": "Tabla semántica, desplazable y con estado vacío veraz.",
+      "html": "<div class=\"ds-table-scroll\"><table class=\"ds-table\"><caption>Solicitudes recibidas</caption><thead><tr><th>Referencia</th><th>Finalidad</th><th>Estado</th><th>Recibida</th><th>Acción</th></tr></thead><tbody><tr><td colspan=\"5\">No hay solicitudes para estos filtros.</td></tr></tbody></table></div>",
+      "css": ".ds-table-scroll{max-width:100%;overflow-x:auto;margin-block:28px}.ds-table{font-family:var(--body,Barlow,sans-serif);border-collapse:collapse;width:100%;text-align:left;font-size:16px;color:var(--ink,#30282a)}.ds-table caption{text-align:left;font-weight:600;color:var(--wine,#701f35);padding-bottom:16px}.ds-table th,.ds-table td{vertical-align:top;padding:16px;border-bottom:1px solid var(--soft,#eadfd2)}.ds-table thead{background:var(--soft,#eadfd2)}"
+    },
+    {
+      "name": "Validation feedback",
+      "kind": "custom",
+      "refersTo": "feedback",
+      "description": "Resumen de errores visible y anunciado.",
+      "html": "<div class=\"ds-feedback\" role=\"alert\" tabindex=\"-1\"><p>Revisa los campos indicados:</p><ul><li>Completa los campos obligatorios.</li></ul></div>",
+      "css": ".ds-feedback{font-family:var(--body,Barlow,sans-serif);padding:20px;margin-block:24px;max-width:75ch;background:var(--soft,#eadfd2);color:var(--wine,#701f35)}.ds-feedback p{margin:0}.ds-feedback ul{padding-left:24px;margin-bottom:0}.ds-feedback:focus-visible{outline:2px solid currentColor;outline-offset:6px}@media(max-width:760px){.ds-feedback{padding:16px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Memoria viva",
+    "overview": "La memoria de una casa abierta toma forma de revista ilustrada: palabras contundentes, papel cálido con grano y escenas originales de convivencia en tinta y trama de impresión. La portada es un índice visual que invita a páginas independientes mediante accesos editoriales y vistas previas reales, sin repetir cuerpos completos.\n\nLa identidad pública es humana y expresiva; la administración es clara y operativa. Ambas comparten vino, papel y Barlow. Los personajes ilustrados son ficticios: no representan a beneficiarias reales ni documentan instalaciones. Los contenidos provisionales y los espacios todavía vacíos lo dicen con claridad.",
+    "keyCharacteristics": [
+      "Hero de cartel en Barlow 800, con serif editorial para lectura institucional.",
+      "Vino protagonista, papel impreso y escenas conceptuales originales sin marco.",
+      "Accesos públicos abiertos, con jerarquía de título, resumen y flecha.",
+      "Panel de gestión con lateral vino, tablas, filtros y formularios.",
+      "Estados veraces, fuentes visibles y consentimiento separado de publicación."
+    ],
+    "rules": [
+      {
+        "name": "The Open Public Composition Rule",
+        "body": "No encerrar imágenes ni secciones editoriales públicas en cajas, marcos o bordes.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do conservar vino, papel, Barlow y Cormorant del frontmatter.",
+      "Do mantener la portada como directorio con accesos abiertos y vistas previas reales.",
+      "Do reservar superficies de gestión, tablas y filtros para las tareas que los necesitan.",
+      "Do conservar etiquetas, foco, errores textuales y equivalentes de tabla para los gráficos.",
+      "Do identificar contenidos provisionales, vacíos y escenas conceptuales con claridad.",
+      "Do separar consentimiento, revisión y publicación, manteniendo privada la evidencia."
+    ],
+    "donts": [
+      "Don't encerrar imágenes o secciones editoriales públicas en cajas, marcos o tarjetas.",
+      "Don't añadir sombras ni revelados generales al hacer scroll.",
+      "Don't inventar testimonios, cifras de impacto, contactos o contenido para llenar estados vacíos.",
+      "Don't tratar conteos administrativos como datos de beneficiarias ni estadísticas nacionales como cifras de Cusco.",
+      "Don't publicar historias sin consentimiento vigente ni exponer documentos privados.",
+      "Don't presentar formularios como aceptación automática, correos enviados o pagos operativos."
+    ]
+  }
+}
