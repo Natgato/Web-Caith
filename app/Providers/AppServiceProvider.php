@@ -25,6 +25,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('manage-site', fn (User $user) => $user->is_admin);
+        Gate::define('write-community', fn (User $user) => ! $user->is_admin);
+        RateLimiter::for('community-login', fn (Request $request) => [
+            Limit::perMinute(20)->by('ip:'.$request->ip()),
+            Limit::perMinute(5)->by('login:'.hash('sha256', strtolower($request->string('email')->toString()).'|'.$request->ip())),
+        ]);
+        RateLimiter::for('community-writing', fn (Request $request) => Limit::perMinute(20)->by($request->user()->id));
         RateLimiter::for('admin-login', fn (Request $request) => Limit::perMinute(5)->by(hash('sha256', strtolower((string) $request->input('email')).'|'.$request->ip())));
         RateLimiter::for('visitor-forms', fn (Request $request) => Limit::perMinute(5)->by($request->ip()));
     }

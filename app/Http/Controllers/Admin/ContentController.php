@@ -15,7 +15,7 @@ class ContentController extends Controller
     {
         $spec = EditorialRegistry::get($module);
         $filters = $request->validate(['q' => ['nullable', 'string', 'max:120'], 'status' => ['nullable', 'in:draft,review,published,hidden,archived']]);
-        $query = $spec['model']::query()->when($filters['q'] ?? null, fn ($q, $value) => $q->where('title', 'like', '%'.$value.'%'))
+        $query = $spec['model']::query()->when($module === 'galeria', fn ($q) => $q->where(fn ($photos) => $photos->whereNull('path')->orWhere('path', 'not like', 'testimonios-privados/%')))->when($filters['q'] ?? null, fn ($q, $value) => $q->where('title', 'like', '%'.$value.'%'))
             ->when($filters['status'] ?? null, fn ($q, $value) => $q->where('status', $value));
 
         return view('admin.content-index', ['module' => $module, 'spec' => $spec, 'records' => $query->latest('updated_at')->paginate(15)->withQueryString()]);
@@ -37,8 +37,10 @@ class ContentController extends Controller
 
     private function editor(string $module, $record)
     {
+        abort_if($record instanceof Media && str_starts_with($record->path ?? '', 'testimonios-privados/'), 404);
+
         return view('admin.content-edit', ['module' => $module, 'record' => $record, 'spec' => EditorialRegistry::get($module),
-            'mediaOptions' => Media::orderBy('title')->get(), 'states' => EditorialRegistry::STATES]);
+            'mediaOptions' => Media::where(fn ($photos) => $photos->where('restricted_to_testimonial', false)->orWhere('id', $record->media_id))->orderBy('title')->get(), 'states' => EditorialRegistry::STATES]);
     }
 
     public function store(EditorialRequest $request, string $module, EditorialService $service)

@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Statistic;
 use App\Models\Testimonial;
 use App\Models\TimelineEvent;
+use App\Services\SiteStudio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,8 +16,17 @@ class PublicSiteController extends Controller
 {
     public function home()
     {
-        return view('Index', ['events' => TimelineEvent::institutionalPreview()->orderBy('year')->take(3)->get(),
-            'posts' => Post::published()->latest('published_at')->take(3)->get(), 'statistics' => Statistic::published()->whereNotNull('verified_at')->latest('year')->take(2)->get(),
+        return $this->renderHome(SiteStudio::published('portada'));
+    }
+
+    public function renderHome(array $homeBlocks, ?array $menuDraft = null, ?array $footerDraft = null, ?string $previewArea = null)
+    {
+        return view('Index', ['homeBlocks' => $homeBlocks, 'menuDraft' => $menuDraft, 'footerDraft' => $footerDraft, 'previewArea' => $previewArea,
+            'events' => TimelineEvent::institutionalPreview()->orderBy('year')->take(3)->get(),
+            'posts' => Post::published()->with('media')->latest('published_at')->take(3)->get(),
+            'statistics' => Statistic::published()->whereNotNull('verified_at')
+                ->whereIn('slug', ['trabajo-hogar-peru-2019', 'trabajo-hogar-peru-2022'])
+                ->where('geography', 'Perú')->where('unit', 'personas')->orderBy('year')->get(),
             'stories' => Testimonial::authorized()->with('consent')->latest('published_at')->take(3)->get()->filter(fn ($t) => Storage::disk('local')->exists($t->consent->evidence_path))]);
     }
 
@@ -26,7 +36,7 @@ class PublicSiteController extends Controller
         $title = config('site.pages')[$slug]['title'] ?? $page?->title;
         abort_unless($title, 404);
 
-        return view('site.page', ['page' => $page, 'title' => $title, 'links' => config('site.pages')[$slug]['links'] ?? []]);
+        return view('site.page', ['page' => $page, 'title' => $title, 'slug' => $slug, 'links' => config('site.pages')[$slug]['links'] ?? []]);
     }
 
     public function timeline()
@@ -38,7 +48,7 @@ class PublicSiteController extends Controller
     {
         $data = $request->validate(['categoria' => ['nullable', 'string', 'max:80']]);
 
-        return view('site.posts', ['posts' => Post::published()->when($data['categoria'] ?? null, fn ($q, $c) => $q->where('category', $c))->latest('published_at')->paginate(9)->withQueryString(),
+        return view('site.posts', ['posts' => Post::published()->with('media')->when($data['categoria'] ?? null, fn ($q, $c) => $q->where('category', $c))->latest('published_at')->paginate(9)->withQueryString(),
             'categories' => Post::published()->distinct()->orderBy('category')->pluck('category')]);
     }
 

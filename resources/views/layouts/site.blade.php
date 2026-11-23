@@ -5,11 +5,17 @@
     <meta name="description" content="@yield('description', 'Casa CAITH, programa del Centro Yanapanakusun en Cusco. Cuidado, educación y autonomía.')">
     <meta name="theme-color" content="#701f35"><title>@yield('title', 'Casa CAITH') — Casa CAITH</title>
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
-    <link rel="stylesheet" href="{{ asset('css/fonts.css') }}"><link rel="stylesheet" href="{{ asset('css/styles.css') }}?v=plataforma-1"><link rel="stylesheet" href="{{ asset('css/platform.css') }}?v=1">
-    <script src="{{ asset('js/site.js') }}?v=plataforma-1" defer></script>
+    <link rel="stylesheet" href="{{ asset('css/fonts.css') }}"><link rel="stylesheet" href="{{ asset('css/styles.css') }}?v=plataforma-2"><link rel="stylesheet" href="{{ asset('css/platform.css') }}?v=12">
+    <script src="{{ asset('js/site.js') }}?v=plataforma-2" defer></script>
     <script src="{{ asset('js/forms.js') }}" defer></script>
+    @unless(request()->routeIs('home') || (request()->routeIs('admin.studio.preview') && request('area') !== 'interiores'))
+        <link rel="stylesheet" href="{{ asset('css/interiores.css') }}?v=1">
+    @endunless
+    <link rel="stylesheet" href="{{ asset('css/editorial-workspace.css') }}">
+    @if(request()->routeIs('community.*', 'admin.studio.preview'))<meta name="robots" content="noindex,nofollow">@endif
+    @stack('styles')
 </head>
-<body>
+<body id="inicio">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
     @include('partials.site-header')
     <main id="contenido">@yield('content')</main>

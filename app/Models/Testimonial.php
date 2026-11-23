@@ -9,7 +9,12 @@ class Testimonial extends EditorialRecord
 {
     protected function casts(): array
     {
-        return [...parent::casts(), 'testimony_date' => 'date'];
+        return [...parent::casts(),
+            'testimony_date' => 'date',
+            'submitted_at' => 'datetime',
+            'image_requested_at' => 'datetime',
+            'contributor_withdrawn_at' => 'datetime',
+        ];
     }
 
     public function consent(): HasOne
@@ -19,6 +24,6 @@ class Testimonial extends EditorialRecord
 
     public function scopeAuthorized(Builder $q): void
     {
-        $q->published()->whereHas('consent', fn (Builder $c) => $c->active());
+        $q->published()->whereNull('contributor_withdrawn_at')->whereHas('consent', fn (Builder $c) => $c->active());
     }
 }

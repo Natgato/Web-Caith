@@ -120,6 +120,10 @@ spacing:
 rounded:
   square: "0px"
 components:
+  stock-photo:
+    textColor: "{colors.muted}"
+  demo-access:
+    textColor: "{colors.wine}"
   hero-headline:
     textColor: "{colors.wine}"
     typography: "{typography.display}"
@@ -317,3 +321,10 @@ Foco de enlaces/botones: 2px del color actual, offset 6px. Transiciones generale
 - **Don't** tratar conteos administrativos como datos de beneficiarias ni estadísticas nacionales como cifras de Cusco.
 - **Don't** publicar historias sin consentimiento vigente ni exponer documentos privados.
 - **Don't** presentar formularios como aceptación automática, correos enviados o pagos operativos.
+
+
+### Fotografías de demostración y acceso local
+
+Refinamiento autorizado el 22/11/2026: fotografías Pexels locales de lectura, estudio y libros para completar la presentación. Componente `stock-photo`, imágenes abiertas sin marcos ni sombras, crédito de 15px y aclaración de stock. Composición de dos fotos escalonadas en portada, dos columnas en galería y una en móvil a 760px. El hero conserva la escena ilustrada. Las páginas interiores usan una foto contextual, ancha o compacta, sin encerrar el contenido. No se simulan testimonios ni documentación de actividades.
+
+Login local: bloque tipográfico abierto con correo y contraseña de la cuenta demo antes del formulario. Correo precargado, contraseña visible como referencia y campo de contraseña vacío. El modo demo se desactiva fuera de local/testing y con CAITH_DEMO_ENABLED=false.

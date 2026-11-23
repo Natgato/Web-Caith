@@ -1,0 +1,225 @@
+@font-face {
+    font-family: "Instrument Serif";
+    src: url("../fonts/InstrumentSerif-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Instrument Serif";
+    src: url("../fonts/InstrumentSerif-Italic.woff2") format("woff2");
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Plus Jakarta Sans";
+    src: url("../fonts/PlusJakartaSans.woff2") format("woff2");
+    font-weight: 400 800;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Plus Jakarta Sans";
+    src: url("../fonts/PlusJakartaSans-Italic.woff2") format("woff2");
+    font-style: italic;
+    font-weight: 400 800;
+    font-display: swap;
+}
+
+.caith-strip {
+    --strip-paper: #efe4d6;
+    --strip-ink: #5b1927;
+    --strip-muted: #75444c;
+    color: var(--strip-ink);
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+.caith-strip-inner {
+    max-width: 1920px;
+    margin-inline: auto;
+    padding: 40px clamp(24px, 5vw, 80px) 32px;
+}
+.caith-meta-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 28px;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+}
+.caith-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr);
+    gap: clamp(28px, 3.34vw, 48px);
+    align-items: center;
+}
+.caith-illustrated-title {
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+}
+.caith-illustrated-title h2 {
+    color: inherit;
+    line-height: .88;
+}
+.caith-eyebrow {
+    display: block;
+    margin-bottom: .4rem;
+    font: 800 .8rem/1.2 "Plus Jakarta Sans", sans-serif;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+}
+.caith-word-casa {
+    display: block;
+    font: italic 400 clamp(3.2rem, 6vw, 5.2rem)/.88 "Instrument Serif", Georgia, serif;
+    letter-spacing: -.02em;
+}
+.caith-word-caith {
+    display: inline-flex;
+    align-items: flex-start;
+    margin-top: .09em;
+    font: 800 clamp(4.2rem, 8.5vw, 7.8rem)/.88 "Plus Jakarta Sans", sans-serif;
+    letter-spacing: -.04em;
+}
+.caith-star {
+    margin: .2em 0 0 .15em;
+    font-size: .32em;
+}
+.caith-poster-stamp {
+    margin: 12px 0 0 5%;
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .22em;
+    line-height: 1.45;
+    text-transform: uppercase;
+}
+.caith-content {
+    position: relative;
+}
+.caith-text-marks {
+    position: absolute;
+    inset: -20px -18px;
+    pointer-events: none;
+}
+.caith-text-marks > span {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 0 solid var(--strip-ink);
+}
+.caith-text-marks > :nth-child(1) {
+    inset: 0 auto auto 0;
+    border-width: 1px 0 0 1px;
+}
+.caith-text-marks > :nth-child(2) {
+    inset: 0 0 auto auto;
+    border-width: 1px 1px 0 0;
+}
+.caith-text-marks > :nth-child(3) {
+    inset: auto auto 0 0;
+    border-width: 0 0 1px 1px;
+}
+.caith-text-marks > :nth-child(4) {
+    inset: auto 0 0 auto;
+    border-width: 0 1px 1px 0;
+}
+.caith-story-title {
+    color: inherit;
+    text-wrap: initial;
+}
+.caith-story-title span {
+    display: block;
+    font: italic 400 clamp(34px, 4vw, 42px)/1 "Instrument Serif", Georgia, serif;
+}
+.caith-story-title strong {
+    display: block;
+    margin-top: 4px;
+    font: 800 clamp(34px, 3.5vw, 52px)/.99 "Plus Jakarta Sans", sans-serif;
+    letter-spacing: -.04em;
+    text-transform: uppercase;
+}
+.caith-lead {
+    margin-top: 20px;
+    font: 400 26px/1.14 "Instrument Serif", Georgia, serif;
+}
+.caith-body {
+    max-width: 60ch;
+    margin-top: 15px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #65464a;
+}
+.caith-story-year {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 22px 0 6px;
+}
+.caith-story-year strong {
+    font-size: 42px;
+    letter-spacing: -.04em;
+    line-height: 1;
+    transform: rotate(-3deg);
+}
+.caith-story-year em {
+    font: italic 400 21px/1.15 "Instrument Serif", Georgia, serif;
+}
+.caith-action-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-top: 15px;
+}
+.caith-editorial-note {
+    color: var(--strip-muted);
+    font-size: .78rem;
+    font-style: italic;
+}
+.caith-history-link,
+.caith-mission-link {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: .5rem;
+    font-size: .9rem;
+    font-weight: 700;
+}
+.caith-mission-link {
+    padding: .5rem 1rem;
+    border: 1px solid var(--strip-ink);
+    border-radius: 999px;
+    text-decoration: none;
+}
+.caith-mission-link:hover {
+    color: var(--strip-paper);
+    background-color: var(--strip-ink);
+}
+.caith-strip-cat {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+@media (min-width: 961px) {
+    .caith-illustrated-title h2,
+    .caith-strip-cat {
+        grid-area: 1 / 1;
+    }
+    .caith-illustrated-title h2 {
+        z-index: 1;
+        align-self: start;
+        justify-self: start;
+        margin: 4.6cqw 0 0 5cqw;
+    }
+    .caith-eyebrow { font-size: clamp(10px, 1.5cqw, 14px); }
+    .caith-word-casa { font-size: clamp(37px, 9cqw, 83px); }
+    .caith-word-caith { font-size: clamp(54px, 13cqw, 125px); }
+}
+@media (max-width: 960px) {
+    .caith-grid { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
+    .caith-text-marks { inset-inline: -14px; }
+    .caith-strip-cat { width: min(100%, 660px); margin-top: 12px; }
+    .caith-poster-stamp { margin-left: 0; }
+}

@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\DemoAccess;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function create()
+    public function create(DemoAccess $demo)
     {
-        return view('admin.login');
+        $demo->ensureAccount();
+
+        return view('admin.login', ['demoEnabled' => DemoAccess::enabled()]);
     }
 
     public function store(Request $request)

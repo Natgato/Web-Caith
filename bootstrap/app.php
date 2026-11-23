@@ -12,8 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->redirectGuestsTo(fn () => route('admin.login'));
-        $middleware->redirectUsersTo(fn () => route('admin.dashboard'));
+        $middleware->redirectGuestsTo(fn ($request) => route($request->routeIs('community.*') ? 'community.login' : 'admin.login'));
+        $middleware->redirectUsersTo(fn ($request) => route($request->user()?->is_admin ? 'admin.dashboard' : 'community.index'));
         $middleware->web(append: [SecurityHeaders::class]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -15,6 +15,29 @@
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && mobile.matches && menuButton.getAttribute('aria-expanded') === 'true') { setMenu(false); menuButton.focus(); }
     });
+
+    const homeHeader = document.querySelector('[data-home-header]');
+    const homeHero = document.querySelector('[data-home-hero]');
+    if (homeHeader && homeHero) {
+        homeHeader.classList.add('is-sticky');
+        let frame = 0;
+        const updateHeader = () => {
+            frame = 0;
+            if (menuButton.getAttribute('aria-expanded') === 'true') return;
+            const heroHasPassed = homeHero.getBoundingClientRect().bottom <= homeHeader.getBoundingClientRect().bottom;
+            homeHeader.classList.toggle('is-wine', heroHasPassed);
+        };
+        const scheduleUpdate = () => {
+            if (!frame) frame = window.requestAnimationFrame(updateHeader);
+        };
+        const sizeObserver = new ResizeObserver(scheduleUpdate);
+        sizeObserver.observe(homeHeader);
+        sizeObserver.observe(homeHero);
+        window.addEventListener('scroll', scheduleUpdate, { passive: true });
+        window.addEventListener('pageshow', scheduleUpdate);
+        updateHeader();
+    }
+
     const controls = document.querySelector('.history-controls');
     const years = [...document.querySelectorAll('[data-year]')];
     const stories = [...document.querySelectorAll('[data-history]')];

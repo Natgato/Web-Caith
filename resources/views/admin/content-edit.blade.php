@@ -3,8 +3,22 @@
 @section('content')
 <a class="back-link" href="{{ route('admin.content.index', $module) }}">Volver al listado</a><p>El texto se guarda y muestra como texto seguro. No pegues HTML ni datos identificables de beneficiarias.</p>
 <form class="admin-form" method="post" enctype="multipart/form-data" action="{{ $record->exists ? route('admin.content.update', [$module, $record->id]) : route('admin.content.store', $module) }}">@csrf @if($record->exists) @method('PUT') @endif
+@if($record->contributor_id)
+    <input type="hidden" name="review_version" value="{{ \App\Services\CommunityText::reviewVersion($record) }}">
+@endif
 @foreach($spec['fields'] as $name => $field)
-    @if($field[1] === 'checkbox')<input type="hidden" name="{{ $name }}" value="0"><label class="check-row"><input type="checkbox" name="{{ $name }}" value="1" @checked(old($name, $record->$name ?? true))><span>{{ $field[0] }}</span></label>
+    @if($record->contributor_id && in_array($name, ['title', 'slug', 'body', 'public_name', 'media_id', 'testimony_date', 'source']))
+        <div class="field">
+            <strong>{{ $field[0] }}</strong>
+            @if($name === 'media_id' && $record->media_id)
+                <a href="{{ route('admin.media', $record->media_id) }}" target="_blank" rel="noopener">Revisar fotografía privada</a>
+            @elseif($name === 'body')
+                <div class="magazine-body">{!! \App\Services\CommunityText::render($record->body) !!}</div>
+            @else
+                <p>{{ $record->$name instanceof \DateTimeInterface ? $record->$name->format('d/m/Y') : $record->$name }}</p>
+            @endif
+        </div>
+    @elseif($field[1] === 'checkbox')<input type="hidden" name="{{ $name }}" value="0"><label class="check-row"><input type="checkbox" name="{{ $name }}" value="1" @checked(old($name, $record->$name ?? true))><span>{{ $field[0] }}</span></label>
     @elseif($field[1] === 'select')<div class="field"><label for="{{ $name }}">{{ $field[0] }}</label><select id="{{ $name }}" name="{{ $name }}">@foreach($field[2] as $value => $label)<option value="{{ $value }}" @selected(old($name, $record->$name) === $value)>{{ $label }}</option>@endforeach</select></div>
     @elseif($field[1] === 'media')<div class="field"><label for="{{ $name }}">{{ $field[0] }}</label><select id="{{ $name }}" name="{{ $name }}"><option value="">Sin material adjunto</option>@foreach($mediaOptions as $media)<option value="{{ $media->id }}" @selected((string)old($name, $record->$name) === (string)$media->id)>{{ $media->title }} ({{ $media->status }})</option>@endforeach</select></div>
     @else<x-field :name="$name" :label="$field[0]" :type="$field[1]" :value="($record->$name instanceof \DateTimeInterface ? $record->$name->format('Y-m-d') : ($record->$name ?? ''))"/>@endif
