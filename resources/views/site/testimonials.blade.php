@@ -1,5 +1,30 @@
 @extends('layouts.site')
 @section('title', 'Historias y testimonios')
 @section('content')
-<section class="page-shell wrap"><h1 class="page-title">Historias compartidas.</h1><p class="lead">Cada relato necesita revisión institucional y consentimiento vigente. Respetamos el nombre público elegido y el derecho a retirarlo.</p><div class="entry-grid">@forelse($stories as $story)<x-entry :href="route('story', $story->slug)" :title="$story->title">{{ $story->public_name }} · {{ $story->testimony_date?->format('d/m/Y') }}</x-entry>@empty<p class="empty-state">Aún no hay testimonios con autorización publicada. No utilizamos relatos inventados para llenar este espacio.</p>@endforelse</div>{{ $stories->links('components.pagination') }}<a class="text-link" href="{{ route('contact', ['tipo' => 'retiro-consentimiento']) }}">Solicitar el retiro de un testimonio <x-arrow /></a></section>
+@php($interior = \App\Services\SiteStudio::interior('stories'))
+<section class="page-shell wrap inside-voices">
+    <div class="inside-spread">
+        <x-interior-art file="portada/historias.webp" />
+        <div>
+            <x-interior-opening :title="$interior['title']" :lead="$interior['lead']" />
+            @if($stories->isEmpty())<p>Aquí aparecerán relatos cuando tengan autorización para publicarse.</p>@endif
+            @unless(auth()->user()?->is_admin)
+                <a class="text-link" href="{{ route('community.editor', 'testimonio') }}">Compartir mi testimonio <x-arrow /></a>
+            @endunless
+            <a class="text-link" href="{{ route('contact', ['tipo' => 'retiro-consentimiento']) }}">Solicitar retiro o corrección <x-arrow /></a>
+        </div>
+    </div>
+    <p class="source-note">Ilustración conceptual.</p>
+    @if($stories->isNotEmpty())
+        <div class="inside-press-list">
+            @foreach($stories as $story)
+                <article class="home-press-item">
+                    <p class="source-note">{{ $story->public_name }}@if($story->testimony_date) · {{ $story->testimony_date->format('d/m/Y') }}@endif</p>
+                    <h2><a href="{{ route('story', $story->slug) }}">{{ $story->title }}</a></h2>
+                </article>
+            @endforeach
+        </div>
+    @endif
+    {{ $stories->links('components.pagination') }}
+</section>
 @endsection

@@ -339,6 +339,22 @@
       "description": "Resumen de errores visible y anunciado.",
       "html": "<div class=\"ds-feedback\" role=\"alert\" tabindex=\"-1\"><p>Revisa los campos indicados:</p><ul><li>Completa los campos obligatorios.</li></ul></div>",
       "css": ".ds-feedback{font-family:var(--body,Barlow,sans-serif);padding:20px;margin-block:24px;max-width:75ch;background:var(--soft,#eadfd2);color:var(--wine,#701f35)}.ds-feedback p{margin:0}.ds-feedback ul{padding-left:24px;margin-bottom:0}.ds-feedback:focus-visible{outline:2px solid currentColor;outline-offset:6px}@media(max-width:760px){.ds-feedback{padding:16px}}"
+    },
+    {
+      "name": "Fotografía de stock local",
+      "kind": "custom",
+      "refersTo": "stock-photo",
+      "description": "Imagen abierta con crédito y condición de stock; sólo en demostración local.",
+      "html": "<figure class=\"ds-stock-photo\"><img src=\"/Web-Caith/public/images/stock/biblioteca.jpg\" alt=\"Mano eligiendo un libro en una estantería\"><figcaption>Stock de demostración · Element5 Digital / Pexels. No es una fotografía de CAITH.</figcaption></figure>",
+      "css": ".ds-stock-photo{margin:32px 0;max-width:100%}.ds-stock-photo img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}.ds-stock-photo figcaption{margin-top:12px;font-size:15px;line-height:1.5;color:#65534e}"
+    },
+    {
+      "name": "Credenciales de demostración",
+      "kind": "custom",
+      "refersTo": "demo-access",
+      "description": "Referencia abierta de correo y contraseña fijos antes del formulario local.",
+      "html": "<div class=\"ds-demo-access\"><h2>Cuenta de demostración</h2><p>Correo: <strong>demo@caith.test</strong><br>Contraseña: <strong>CaithDemo2026!</strong></p></div>",
+      "css": ".ds-demo-access{margin:26px 0 30px;color:#701f35}.ds-demo-access h2{font-size:23px}.ds-demo-access p{line-height:1.6}"
     }
   ],
   "narrative": {

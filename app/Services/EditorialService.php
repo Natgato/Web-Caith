@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\EditorialRecord;
 use App\Models\Media;
+use App\Models\Opinion;
 use App\Models\Statistic;
 use App\Models\Testimonial;
 use App\Models\TimelineEvent;
@@ -22,15 +23,25 @@ class EditorialService
         $oldPath = $record instanceof Media ? $record->path : null;
         try {
             return DB::transaction(function () use ($module, $record, $data, $user, $file, &$newPath, $oldPath) {
+                if ($record->exists) {
+                    $record = $record->newQuery()->lockForUpdate()->findOrFail($record->id);
+                }
                 $fields = array_keys(EditorialRegistry::get($module)['fields']);
                 if (in_array('sort_order', $fields)) {
                     $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
+                }
+                if (($record instanceof Testimonial || $record instanceof Opinion) && $record->contributor_id) {
+                    if (! hash_equals(CommunityText::reviewVersion($record), $data['review_version'] ?? '')) {
+                        $this->fail('status', 'El envío cambió después de abrir el editor. Vuelve a abrirlo para revisar el contenido actual.');
+                    }
+                    $fields = array_diff($fields, ['title', 'slug', 'body', 'public_name', 'media_id', 'testimony_date', 'source']);
                 }
                 $record->fill(Arr::only($data, [...$fields, 'status']));
                 if (! $record->exists) {
                     $record->forceFill(['author_id' => $user->id]);
                 }
                 if ($record instanceof Media) {
+                    abort_if(str_starts_with($record->path ?? '', 'testimonios-privados/'), 404);
                     if ($file) {
                         $newPath = $file->store('media', 'local');
                         $isPhoto = str_starts_with($file->getMimeType(), 'image/');
@@ -53,6 +64,10 @@ class EditorialService
                     $media = Media::findOrFail($record->media_id);
                     if (! $record instanceof Testimonial && $media->restricted_to_testimonial) {
                         $this->fail('media_id', 'Esta fotografía está reservada a un testimonio y no puede reutilizarse públicamente.');
+                    }
+                    if ($record instanceof Testimonial && $media->restricted_to_testimonial
+                        && Testimonial::where('media_id', $media->id)->whereKeyNot($record->id ?? 0)->exists()) {
+                        $this->fail('media_id', 'Esta fotografía está vinculada a otro testimonio.');
                     }
                     if ($record instanceof Testimonial && $media->kind !== 'photo') {
                         $this->fail('media_id', 'Selecciona una fotografía para el testimonio.');
@@ -94,19 +109,26 @@ class EditorialService
         if (! $record instanceof Media && ! filled($record->body)) {
             $this->fail('body', 'Añade el contenido revisado antes de publicar.');
         }
+        if (($record instanceof Testimonial || $record instanceof Opinion) && $record->contributor_id && ! $record->submitted_at) {
+            $this->fail('status', 'La persona autora debe enviar su texto a revisión antes de publicarlo.');
+        }
         if ($record instanceof Testimonial) {
+            if ($record->contributor_withdrawn_at) {
+                $this->fail('status', 'La persona autora retiró este testimonio.');
+            }
             $consent = $record->consent()->active()->first();
             if (! $consent || ! Storage::disk('local')->exists($consent->evidence_path)) {
                 $this->fail('status', 'Guarda primero el borrador y registra un consentimiento vigente con evidencia privada.');
             }
-            if ($record->media_id && ! $consent->allow_image) {
+            if ($record->media_id && ! $consent->allow_image && ! $record->contributor_id) {
                 $this->fail('media_id', 'El consentimiento no autoriza la fotografía.');
             }
         }
         if ($record instanceof Media && ! filled($record->authorization_reference)) {
             $this->fail('authorization_reference', 'Registra la autorización del material antes de publicarlo.');
         }
-        if ($record->media_id && ! $record->media->isAuthorized()) {
+        $privateStoryPhoto = $record instanceof Testimonial && $record->contributor_id && ! $consent->allow_image;
+        if ($record->media_id && ! $privateStoryPhoto && ! $record->media->isAuthorized()) {
             $this->fail('media_id', 'El material adjunto debe estar revisado y autorizado para publicación.');
         }
         if ($record instanceof Statistic && $record->unit === '%' && $record->value > 100) {
@@ -119,6 +141,7 @@ class EditorialService
 
     public function delete(EditorialRecord $record): void
     {
+        abort_if($record instanceof Media && str_starts_with($record->path ?? '', 'testimonios-privados/'), 404);
         $paths = [];
         if ($record instanceof Testimonial && $record->consent?->evidence_path) {
             $paths[] = $record->consent->evidence_path;

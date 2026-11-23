@@ -1,10 +1,46 @@
 @extends('layouts.site')
 @section('title', 'Línea de tiempo')
 @section('content')
-<section class="page-shell wrap"><h1 class="page-title">Una historia compartida.</h1><p class="lead">De 1994 a la actualidad: los hitos disponibles se incorporan según sus fuentes y autorizaciones.</p>
-@if($events->contains('is_provisional', true))<p class="content-status">Vista local de hitos provisionales para revisión institucional. No se añaden años sin acontecimientos documentados.</p>@endif
-<div class="history timeline-page"><div class="timeline-inner">
-@if($events->isNotEmpty())<div class="history-controls" role="group" aria-label="Elige una etapa" hidden>@foreach($events as $event)<button type="button" data-year="{{ $event->id }}" aria-pressed="{{ $loop->first ? 'true' : 'false' }}" aria-controls="hito-{{ $event->id }}">{{ $event->year }}</button>@endforeach</div>@endif
-<div class="history-stories">@forelse($events as $event)<article class="history-story" id="hito-{{ $event->id }}" data-history="{{ $event->id }}"><p class="history-year">{{ $event->year }}</p><div class="history-copy"><h2>{{ $event->title }}</h2><div class="article-body">{{ $event->body }}</div><p class="source-note">Fuente: {{ $event->source }}</p>@if($event->media?->isAuthorized() && ! $event->media->restricted_to_testimonial)@if($event->media->kind === 'photo')<img src="{{ route('media.show', $event->media) }}" alt="{{ $event->media->alt_text }}" loading="lazy">@elseif($event->media->path)<video controls preload="metadata" src="{{ route('media.show', $event->media) }}" aria-label="{{ $event->media->alt_text }}"></video>@else<a href="{{ $event->media->external_url }}" rel="noopener noreferrer" target="_blank">Ver video en su plataforma</a>@endif @endif</div></article>@empty<p>No hay hitos autorizados publicados todavía.</p>@endforelse</div>
-</div></div></section>
+@php($interior = \App\Services\SiteStudio::interior('timeline'))
+<section class="page-shell wrap inside-timeline">
+    <x-interior-opening :title="$interior['title']" :lead="$interior['lead']" back="nosotros" back-label="Nosotros" />
+    @if($events->contains('is_provisional', true))
+        <p class="content-status">Hitos provisionales para revisión institucional.</p>
+    @endif
+    @if($events->isNotEmpty())
+        <nav class="inside-jump" aria-label="Ir a un hito">
+            @foreach($events as $event)<a href="#hito-{{ $event->id }}">{{ $event->year }}</a>@endforeach
+        </nav>
+        <ol class="inside-history">
+            @foreach($events as $event)
+                @php($illustration = [1994 => 'casa.webp', 2001 => 'centro.webp', 2020 => 'pandemia.webp'][$event->year] ?? null)
+                <li id="hito-{{ $event->id }}" @class(['inside-history-event', 'has-illustration' => $illustration])>
+                    <div class="chronicle-collage">
+                        <time class="chronicle-year" datetime="{{ $event->year }}"><span class="chronicle-year-back">{{ substr((string) $event->year, 0, 2) }}</span><span class="chronicle-year-front">{{ substr((string) $event->year, 2) }}</span></time>
+                        @if($illustration)
+                            <img class="chronicle-illustration" src="{{ asset('images/cronologia/'.$illustration) }}" width="960" height="640" alt="" loading="lazy" decoding="async">
+                        @endif
+                    </div>
+                    <article>
+                        <h2>{{ $event->title }}</h2>
+                        <div class="article-body">{{ $event->body }}</div>
+                        @if($event->source)<p class="source-note">Fuente: {{ $event->source }}</p>@endif
+                        @if($event->media?->isAuthorized() && ! $event->media->restricted_to_testimonial)
+                            @if($event->media->kind === 'photo')
+                                <img class="article-image" src="{{ route('media.show', $event->media) }}" alt="{{ $event->media->alt_text }}" loading="lazy">
+                            @elseif($event->media->path)
+                                <video class="article-image" controls preload="metadata" src="{{ route('media.show', $event->media) }}" aria-label="{{ $event->media->alt_text }}"></video>
+                            @elseif($event->media->external_url)
+                                <a class="text-link" href="{{ $event->media->external_url }}" rel="noopener noreferrer" target="_blank">Ver video en su plataforma <x-arrow /></a>
+                            @endif
+                        @endif
+                    </article>
+                </li>
+            @endforeach
+        </ol>
+        <p class="source-note">Ilustraciones conceptuales.</p>
+    @else
+        <p class="empty-state">No hay hitos autorizados publicados todavía.</p>
+    @endif
+</section>
 @endsection

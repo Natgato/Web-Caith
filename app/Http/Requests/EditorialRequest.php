@@ -29,6 +29,7 @@ class EditorialRequest extends FormRequest
                 continue;
             }
             $rules[$field] = match ($field) {
+                'review_feedback' => ['nullable', 'string', 'max:1000'],
                 'year' => ['required', 'integer', 'between:1900,'.now()->year],
                 'value' => ['required', 'numeric', 'min:0', 'max:99999999999'],
                 'sort_order' => ['nullable', 'integer', 'between:0,100000'],
@@ -45,6 +46,14 @@ class EditorialRequest extends FormRequest
         }
         if ($module === 'galeria') {
             $rules['asset_file'] = ['nullable', 'file', 'mimetypes:image/jpeg,image/png,image/webp,video/mp4,video/webm', 'max:20480'];
+        }
+
+        if (in_array($module, ['testimonios', 'opiniones']) && $this->route('id')
+            && $model->newQuery()->whereKey($this->route('id'))->whereNotNull('contributor_id')->exists()) {
+            $rules['review_version'] = ['required', 'string', 'size:64'];
+            foreach (['title', 'slug', 'body', 'public_name', 'media_id', 'testimony_date', 'source'] as $protected) {
+                unset($rules[$protected]);
+            }
         }
 
         return $rules;

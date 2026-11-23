@@ -5,6 +5,9 @@ use App\Http\Controllers\Admin\ConsentController;
 use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InboxController;
+use App\Http\Controllers\Admin\SiteStudioController;
+use App\Http\Controllers\CommunityAuthController;
+use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PublicSiteController;
 use App\Http\Controllers\VisitorController;
@@ -41,6 +44,29 @@ Route::get('/privacidad', [PublicSiteController::class, 'privacy'])->name('priva
 Route::get('/donaciones', [PublicSiteController::class, 'donations'])->name('donations');
 Route::get('/media/{media}', [MediaController::class, 'show'])->name('media.show');
 
+Route::get('/opiniones/{slug?}', [CommunityController::class, 'opinions'])->name('opinions');
+
+Route::prefix('cuenta')->name('community.')->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('/entrar', [CommunityAuthController::class, 'form'])->name('login');
+        Route::post('/entrar', [CommunityAuthController::class, 'login'])->middleware('throttle:community-login')->name('login.store');
+        Route::get('/registro', [CommunityAuthController::class, 'form'])->name('register');
+        Route::post('/registro', [CommunityAuthController::class, 'register'])->middleware('throttle:visitor-forms')->name('register.store');
+    });
+
+    Route::middleware(['auth', 'can:write-community'])->group(function () {
+        Route::get('/', [CommunityController::class, 'index'])->name('index');
+        Route::post('/salir', [CommunityAuthController::class, 'logout'])->name('logout');
+        Route::get('/testimonio/{id}/foto', [CommunityController::class, 'photo'])->whereNumber('id')->name('photo');
+        Route::prefix('{type}')->where(['type' => 'testimonio|opinion'])->group(function () {
+            Route::get('/editor/{id?}', [CommunityController::class, 'editor'])->whereNumber('id')->name('editor');
+            Route::post('/editor/{id?}', [CommunityController::class, 'save'])->whereNumber('id')->middleware('throttle:community-writing')->name('save');
+            Route::get('/{id}/retirar', [CommunityController::class, 'withdrawal'])->whereNumber('id')->name('withdrawal');
+            Route::post('/{id}/retirar', [CommunityController::class, 'withdraw'])->whereNumber('id')->name('withdraw');
+        });
+    });
+});
+
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('/login', [AuthController::class, 'create'])->name('login');
@@ -49,6 +75,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['auth', 'can:manage-site'])->group(function () {
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
+        Route::get('/sitio/portada/vista', [SiteStudioController::class, 'preview'])->name('studio.preview');
+        Route::get('/sitio/{area}', [SiteStudioController::class, 'edit'])->name('studio.edit');
+        Route::put('/sitio/{area}', [SiteStudioController::class, 'update'])->name('studio.update');
+        Route::post('/sitio/{area}/versiones/{revision}', [SiteStudioController::class, 'restore'])->name('studio.restore');
         Route::get('/contenidos/{module}', [ContentController::class, 'index'])->name('content.index');
         Route::get('/contenidos/{module}/nuevo', [ContentController::class, 'create'])->name('content.create');
         Route::post('/contenidos/{module}', [ContentController::class, 'store'])->name('content.store');

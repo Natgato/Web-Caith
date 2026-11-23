@@ -79,3 +79,18 @@ No se implementan pagos, cuentas bancarias, comentarios públicos ni integració
 - Laravel: https://laravel.com/docs/12.x
 
 No se incluyen credenciales reales en este documento ni en seeders. Las contraseñas se definen localmente.
+
+
+## Presentación local del avance
+
+Esta copia sirve para mostrar el crecimiento del proyecto. Con `APP_ENV=local` y `CAITH_DEMO_ENABLED=true` (valor predeterminado), el login crea automáticamente una cuenta independiente si no existe y muestra sus credenciales:
+
+- URL: http://localhost/Web-Caith/public/admin/login
+- Correo: `demo@caith.test`
+- Contraseña: `CaithDemo2026!`
+
+No requiere ejecutar comandos para crear el usuario. También se incluye al ejecutar los seeders. Las cuentas anteriores no se modifican. La contraseña se almacena cifrada mediante hash en la base de datos. Si se cambia manualmente la contraseña de esta cuenta, la creación automática no la restablece.
+
+Las fotografías locales de Pexels completan la portada, páginas interiores y galería como **stock de demostración**, con créditos visibles. No se crean testimonios, actividades ni autorizaciones institucionales a partir de ellas. Archivos y procedencia: `public/images/stock/` y `docs/FOTOS-STOCK.md`.
+
+`CAITH_DEMO_ENABLED=false` desactiva la muestra de fotografías y las credenciales. En producción se deshabilita además por entorno. Para retirar un acceso ya creado hay que eliminar la cuenta demo del panel o la base: desactivar la presentación no borra usuarios existentes.

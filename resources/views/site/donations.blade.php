@@ -1,5 +1,14 @@
 @extends('layouts.site')
 @section('title', 'Donaciones — Próximamente')
 @section('content')
-<section class="page-shell wrap"><h1 class="page-title">Donaciones.</h1><p class="lead">Próximamente.</p><p class="readable">El apoyo económico podría contribuir a sostener el acompañamiento educativo y las actividades institucionales. Los mecanismos y condiciones se publicarán después de su aprobación por Casa CAITH.</p><p class="readable">Esta página no recibe pagos ni muestra cuentas bancarias. Puedes enviar una consulta al equipo.</p><a class="text-link" href="{{ route('contact') }}">Ir a contacto <x-arrow /></a></section>
+@php($interior = \App\Services\SiteStudio::interior('donations'))
+<section class="page-shell wrap inside-spread inside-donations">
+    <div>
+        <x-interior-opening :title="$interior['title']" :lead="$interior['lead']" />
+        <p class="readable">Los mecanismos y condiciones se publicarán después de su aprobación por Casa CAITH.</p>
+        <a class="text-link" href="{{ route('como-ayudar') }}">Ver formas de colaborar <x-arrow /></a>
+        <a class="text-link" href="{{ route('contact') }}">Ir a contacto <x-arrow /></a>
+    </div>
+    <x-interior-art file="caith-cantuta-tinta.png" />
+</section>
 @endsection
