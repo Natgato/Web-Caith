@@ -55,7 +55,33 @@ Los campos personales de solicitudes, el alcance de consentimientos y referencia
 
 `php artisan db:seed --class=DemoSeeder` es opcional y crea un artículo ficticio en borrador, solo en local/testing. No crea credenciales ni testimonios reales.
 
-Las noticias, testimonios y fotografías se mantienen vacíos hasta su revisión. Las cifras cargadas son nacionales de 2019 y 2022, no actuales de Cusco ni resultados de CAITH. Fuente y limitaciones: docs/VALIDACION-Y-FUENTES.md.
+Las noticias, testimonios y fotografías institucionales se incorporan según su revisión. El comando de demostración descrito a continuación añade ejemplos ficticios. Las cifras cargadas son nacionales de 2019 y 2022, no actuales de Cusco ni resultados de CAITH. Fuente y limitaciones: docs/VALIDACION-Y-FUENTES.md.
+
+## Arranque con contenido de demostración
+
+Desde la carpeta del proyecto, con PHP 8.2+, las dependencias Composer y la base configurada disponible, ejecuta:
+
+```powershell
+C:\xampp\php\php.exe artisan caith:demo
+```
+
+El comando ejecuta las migraciones pendientes, carga las semillas institucionales y añade 12 noticias publicadas, 2 noticias en borrador/revisión, 4 fotografías de stock con créditos, 6 opiniones, 5 testimonios y 36 solicitudes ficticias distribuidas en seis meses. Arranca la web en http://127.0.0.1:8000. Ctrl+C detiene el servidor.
+
+Los ejemplos publicados llevan la marca Demo. Las historias, sus firmas y los documentos asociados son ficticios. Al repetir el comando se conservan las contraseñas, ediciones y retiros existentes. Las solicitudes se identifican por mes para completar el periodo de demostración.
+
+Accesos iniciales de la demo:
+
+- Administración en /admin/login, correo demo@caith.test y contraseña CaithDemo2026!
+- Usuario en /cuenta/entrar, correo usuario.demo@caith.test y contraseña UsuarioDemo2026!
+
+Para cargar el contenido y usar Apache de XAMPP:
+
+```powershell
+C:\xampp\php\php.exe artisan caith:demo --solo-semillas
+```
+
+Si el puerto está ocupado, usa la opción --port=8001. MySQL debe estar encendido si es el motor configurado en .env. El comando admite entornos local/testing. Durante su servidor habilita la presentación y los formularios de demostración y desactiva la pantalla de depuración.
+
 
 ## Pruebas
 

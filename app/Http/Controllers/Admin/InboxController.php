@@ -28,7 +28,13 @@ class InboxController extends Controller
         $data = $request->validate(['status' => ['nullable', Rule::in(array_keys($this->states($box)))], 'q' => ['nullable', 'string', 'max:100']]);
         $query = $model::query()->when($data['status'] ?? null, fn ($q, $v) => $q->where('status', $v));
         if ($data['q'] ?? null) {
-            $query->where('reference', 'like', '%'.$data['q'].'%');
+            $reference = trim($data['q']);
+            $query->where(function ($q) use ($reference) {
+                $q->where('reference', 'like', '%'.$reference.'%');
+                if (ctype_digit($reference)) {
+                    $q->orWhere('id', $reference);
+                }
+            });
         }
 
         return view('admin.inbox', ['box' => $box, 'records' => $query->latest()->paginate(15)->withQueryString(), 'states' => $this->states($box)]);

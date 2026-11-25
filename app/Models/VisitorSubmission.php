@@ -13,7 +13,7 @@ abstract class VisitorSubmission extends Model
 
     protected static function booted(): void
     {
-        static::creating(fn ($record) => $record->reference = (string) Str::uuid());
+        static::creating(fn ($record) => $record->reference ??= (string) Str::uuid());
     }
 
     protected function casts(): array

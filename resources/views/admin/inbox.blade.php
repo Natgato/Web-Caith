@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 @section('title', $box === 'participacion' ? 'Solicitudes de participación' : 'Contacto y privacidad')
-@section('lead', 'Busca por referencia y abre la solicitud para revisarla.')
+@section('lead', 'Busca por número de solicitud y abre el registro para revisarlo.')
 @section('content')
 <section class="workspace-panel workspace-records">
     <form class="filter-form" method="get">
-        <label for="q">Referencia</label>
+        <label for="q">Número de solicitud</label>
         <input name="q" id="q" value="{{ request('q') }}" maxlength="100">
         <label for="status">Estado</label>
         <select name="status" id="status">
@@ -17,11 +17,11 @@
     </form>
     <div class="table-scroll">
         <table aria-label="Solicitudes recibidas">
-            <thead><tr><th>Referencia</th><th>Finalidad</th><th>Estado</th><th>Recibida</th><th>Acción</th></tr></thead>
+            <thead><tr><th>Número</th><th>Finalidad</th><th>Estado</th><th>Recibida</th><th>Acción</th></tr></thead>
             <tbody>
                 @forelse($records as $record)
                     <tr>
-                        <th scope="row">{{ $record->reference }}</th>
+                        <th scope="row">{{ $record->id }}</th>
                         <td>{{ $record->kind }}</td>
                         <td><span class="workspace-status" data-status="{{ $record->status }}">{{ $states[$record->status] ?? $record->status }}</span></td>
                         <td><time datetime="{{ $record->created_at->toIso8601String() }}">{{ $record->created_at->format('d/m/Y H:i') }}</time></td>

@@ -24,6 +24,6 @@ class VisitorController extends Controller
         $record->save();
 
         return redirect()->route($participation ? 'participation.form' : 'contact', $participation ? $request->validated('kind') : [])
-            ->with('success', 'Recibimos tu solicitud. Referencia: '.$record->reference.'. Se guardó para revisión; no se envió un correo automático.');
+            ->with('success', 'Recibimos tu solicitud. Número de solicitud: '.$record->id.'. Se guardó para revisión; no se envió un correo automático.');
     }
 }

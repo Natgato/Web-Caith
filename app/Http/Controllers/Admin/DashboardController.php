@@ -67,7 +67,7 @@ class DashboardController extends Controller
         return $query->orderBy('updated_at')->take(8)->get()->map(fn ($record) => [
             'date' => $record->updated_at,
             'label' => $label,
-            'title' => $record->title ?? 'Solicitud '.substr($record->reference, 0, 8),
+            'title' => $record->title ?? 'Solicitud '.$record->id,
             'url' => route($route, [$key, $record->id]),
         ]);
     }
